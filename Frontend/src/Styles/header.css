@@ -1,0 +1,404 @@
+/* Custom Properties (CSS Variables) for easy theming */
+:root {
+  --primary-color: #007bff; /* Blue */
+  --secondary-color: #6c757d; /* Grey */
+  --accent-color: #28a745; /* Green */
+  --text-color: #343a40; /* Dark Grey */
+  --light-text-color: #f8f9fa; /* Light Grey */
+  --background-color: #ffffff; /* White */
+  --header-bg-color: #ffffff;
+  --border-color: #dee2e6;
+  --hover-color: #e9ecef;
+  --danger-color: #dc3545; /* Red */
+
+  --font-family-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-size-base: 1rem;
+  --padding-base: 1rem;
+  --border-radius-base: 0.25rem;
+
+  --box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --box-shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: #f4f7f6; /* A slightly off-white background for the body */
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Header Component Styles */
+.header {
+  background-color: var(--header-bg-color);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow-light);
+  padding: 0.8rem var(--padding-base);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+/* Logo/Brand */
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: -0.5px;
+  margin-right: 1.5rem; /* Space between logo and nav on larger screens */
+  white-space: nowrap; /* Prevent logo from wrapping */
+}
+
+.logo:hover {
+  color: var(--primary-color); /* Keep color on hover, remove underline */
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem; /* Space between nav links */
+  flex-grow: 1; /* Allow nav to take available space */
+  justify-content: flex-end; /* Align nav items to the right */
+}
+
+.nav-link {
+  color: var(--text-color);
+  font-weight: 500;
+  padding: 0.5rem 0.2rem;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0; /* Adjusted to be right below the text */
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Cart Link */
+.cart-link {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  position: relative;
+  padding: 0.5rem 0.2rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.cart-link:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.cart-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.cart-badge {
+  background-color: var(--danger-color);
+  color: var(--light-text-color);
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  position: absolute;
+  top: -8px; /* Adjusted position */
+  right: -12px; /* Adjusted position */
+  min-width: 20px; /* Ensure badge is round for single digits */
+  text-align: center;
+  line-height: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* User Dropdown */
+.user-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.user-button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-color);
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--border-radius-base);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.user-button:hover {
+  background-color: var(--hover-color);
+  color: var(--primary-color);
+}
+
+.user-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--secondary-color);
+}
+
+.user-button:hover .user-icon {
+  color: var(--primary-color);
+}
+
+.user-name {
+  font-weight: 600;
+  display: none; /* Hidden by default, shown on larger screens */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px); /* Position below the button with a small gap */
+  right: 0;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-base);
+  box-shadow: var(--box-shadow-medium);
+  min-width: 180px;
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  padding: 0.5rem 0;
+  z-index: 100;
+}
+
+.user-dropdown:hover .dropdown-menu,
+.user-dropdown:focus-within .dropdown-menu { /* For keyboard navigation */
+  display: flex;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.2rem;
+  color: var(--text-color);
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.dropdown-item:hover {
+  background-color: var(--hover-color);
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.dropdown-item.logout {
+  color: var(--danger-color);
+  font-weight: 500;
+}
+
+.dropdown-item.logout:hover {
+  background-color: rgba(var(--danger-color), 0.08); /* Light red background on hover */
+  color: var(--danger-color);
+}
+
+/* Login Link */
+.login-link {
+  color: var(--primary-color);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius-base);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.login-link:hover {
+  background-color: var(--primary-color);
+  color: var(--light-text-color);
+  text-decoration: none;
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Small devices (phones, 600px and down) */
+@media (max-width: 600px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .logo {
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.8rem;
+    flex-wrap: wrap; /* Allow nav items to wrap if needed */
+  }
+
+  .nav-link,
+  .cart-link {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .cart-badge {
+    top: -5px;
+    right: -5px;
+    padding: 0.1rem 0.4rem;
+    font-size: 0.7rem;
+  }
+
+  .user-button .user-name {
+    display: none; /* Hide name on small screens to save space */
+  }
+
+  .login-link {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Medium devices (tablets, 601px to 992px) */
+@media (min-width: 601px) and (max-width: 992px) {
+  .header-container {
+    padding: 0 1.5rem;
+  }
+
+  .nav {
+    gap: 1rem;
+  }
+
+  .user-button .user-name {
+    display: inline-block; /* Show name on medium screens */
+  }
+}
+
+/* Large devices (desktops, 993px and up) */
+@media (min-width: 993px) {
+  .header {
+    padding: 1rem var(--padding-base);
+  }
+
+  .header-container {
+    padding: 0 2rem;
+  }
+
+  .logo {
+    font-size: 2rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .cart-link {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .user-button .user-name {
+    display: inline-block; /* Ensure name is visible on large screens */
+  }
+}
+
+/* Accessibility Focus States */
+.nav-link:focus,
+.cart-link:focus,
+.user-button:focus,
+.login-link:focus,
+.dropdown-item:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-base);
+}
+
+.dropdown-item.logout:focus {
+  outline-color: var(--danger-color);
+}
+
+/* Search Bar Container */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #f2f2f2;
+  border-radius: 25px;
+  padding: 5px 12px;
+  width: 300px;
+  transition: all 0.3s ease-in-out;
+  margin: 0 20px;
+}
+
+.search-bar:focus-within {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Input Styling */
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #333;
+}
+
+/* Placeholder color */
+.search-bar input::placeholder {
+  color: #999;
+  font-size: 13px;
+}
+
+/* Search icon (lucide-react) */
+.search-bar svg {
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.search-bar svg:hover {
+  color: #111;
+}
