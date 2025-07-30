@@ -92,7 +92,16 @@ const ProductDetails = () => {
       ) : (
         <div className="product-details-grid">
           <div className="image-container">
-            <img src={product.image} alt={product.name} className="product-image" />
+            <img 
+              src={
+                product.thumbnail ||
+                (product.images && product.images.length > 0 && product.images[0]) ||
+                '/placeholder.jpg'
+              }
+              alt={product.name}
+              className="product-image"
+            />
+
           </div>
           <div className="product-info">
             <div className="product-header">

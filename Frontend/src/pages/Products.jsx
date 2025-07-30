@@ -32,8 +32,8 @@ const Home = () => {
   const filteredProducts = searchTerm
   ? products.filter((product) =>
       product.name.toLowerCase().includes(searchTerm)
-    )
-  : products;
+    ).slice(-24)
+  : products.slice(-24);
 // Show all products if search is empty
 
   return (
