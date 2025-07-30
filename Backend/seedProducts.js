@@ -16,7 +16,7 @@ const seedProducts = async () => {
     console.log('✅ Cleared existing products');
 
     // Fetch DummyJSON products
-    const { data } = await axios.get('https://dummyjson.com/products?limit=100');
+    const { data } = await axios.get('https://dummyjson.com/products');
     const productsFromAPI = data.products;
 
     // Map and format all fields
