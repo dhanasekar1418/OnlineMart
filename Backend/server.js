@@ -12,7 +12,9 @@ connectDB();
 const app = express(); 
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://onlinemart-theta.vercel.app"], 
+  origin: [
+    "http://localhost:5173", "https://online-mart-omega.vercel.app"  
+  ], 
   credentials: true,               
 }));
 app.use(express.json());
