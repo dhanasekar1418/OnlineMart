@@ -12,12 +12,20 @@ connectDB();
 const app = express(); 
 
 app.use(cors({
-  origin: [
-    "http://localhost:5173", "https://online-mart-omega.vercel.app"  
-  ], 
-  credentials: true,               
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "http://localhost:5173",
+      "https://online-mart-omega.vercel.app",
+    ];
+    if (!origin || allowedOrigins.includes(origin) || origin.endsWith(".vercel.app")) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed"));
+    }
+  },
+  credentials: true,
 }));
-app.use(express.json());
+
 
 // Routes
 app.use('/api/auth', authRoutes);
