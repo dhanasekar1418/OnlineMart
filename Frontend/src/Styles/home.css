@@ -172,3 +172,24 @@
   padding: 0 16px;
 }
 
+.categories-section {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;   /* instead of center */
+  padding-top: 50px;             /* space above */
+  padding-bottom: 80px;          /* space below */
+  padding-left: 40px;            /* move right */
+}
+
+.categories-section img {
+  width: 95%;                    /* slightly smaller so it shifts right cleanly */
+  height: auto;
+  object-fit: contain;
+}
+
+.categories-section,
+.sidepage {
+  cursor: pointer;          /* changes mouse to hand */
+}
+
+
